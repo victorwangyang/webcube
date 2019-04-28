@@ -50,8 +50,8 @@ export class AppComponent {
     this.isVisible = false;
 
     this.http.put("/api/v1/cluster",
-    {"name": this.Namevalue,
-     "num": this.Numvalue
+    {"clustername": this.Namevalue,
+     "clustersize": String(this.Numvalue)
      },httpOptions)
     .subscribe(
       data => {
