@@ -1,0 +1,73 @@
+<!-- NG-ZORRO -->
+
+<br>
+<br>
+  <div nz-row style ="padding: 30px ;margin: 20px">
+      <nz-card   >
+    <div nz-col nzSpan = "12" >
+          <p>Create a new Cluster (Maxnum of Cluster is 5)</p>
+          <button nz-button [nzSize]="large" (click)="showModal()" nzType="primary">Create</button>  
+          <button nz-button [nzSize]="large" (click)="delete()" nzType="primary">Delete</button>  
+            <nz-modal [(nzVisible)]="isVisible" nzTitle="Cluster Information" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+              <p>Name your Cluster</p> 
+                <input nz-input [(ngModel)]="Namevalue" />
+                <p></p> 
+                <p></p> 
+              <p>Counts of your Cluster Node</p> 
+                <nz-input-number [(ngModel)]="Numvalue" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>  
+            </nz-modal>
+    </div>
+
+    <div nz-col [nzSpan]="6">
+      <nz-statistic [nzValue]="0 | number" [nzTitle]="'Active Cluster'"></nz-statistic>
+    </div>
+    <div nz-col [nzSpan]="6">
+      <nz-statistic [nzValue]="0 | number" [nzTitle]="'Active Nodes'"></nz-statistic>
+    </div>
+  </nz-card>
+  </div>
+
+  <div nz-row style ="padding: 30px ;margin: 20px">
+  <nz-divider nzText = "Cluster Collection"></nz-divider>
+</div>
+
+
+
+
+<!-- <br>
+<br>
+<br>
+<div style ="padding: 30px ;margin: 20px">
+  <div nz-row >
+    <div nz-col nzSpan = "12" style ="padding: 20px ">
+        <nz-card   >
+          <p>Create a new Cluster (Maxnum of Cluster is 5)</p>
+            <button nz-button [nzSize]="large" (click)="showModal()" nzType="primary">Create</button>
+            <nz-modal [(nzVisible)]="isVisible" nzTitle="Cluster Information" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+              <p>Name your Cluster</p> 
+                <input nz-input [(ngModel)]="Namevalue" />
+              <br />
+              <p>Counts of your Cluster Node</p> 
+                <nz-input-number [(ngModel)]="Numvalue" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>  
+            </nz-modal>
+
+        </nz-card>
+    </div>
+    <div nz-col nzSpan="12" style ="padding: 20px ">
+      <nz-card  >
+        <nz-row [nzGutter]="16">
+          <nz-col [nzSpan]="12">
+            <nz-statistic [nzValue]="0 | number" [nzTitle]="'Active Cluster'"></nz-statistic>
+
+          </nz-col>
+          <nz-col [nzSpan]="12">
+            <nz-statistic [nzValue]="0 | number" [nzTitle]="'Active Nodes'"></nz-statistic>
+          </nz-col>
+        </nz-row>
+      </nz-card>
+
+    </div>
+  </div>
+  
+</div> -->
+<!-- <nz-divider style ="margin: 50px"></nz-divider> -->
