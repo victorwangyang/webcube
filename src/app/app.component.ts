@@ -17,7 +17,11 @@ export class AppComponent {
   isVisible = false;
   Namevalue = 'my-cluster';
   Numvalue  = 3;
+  activecluster = 0;
+  activenodes = 0;
+
   NotifyString = 'Cluster '+ this.Namevalue +'  is starting.....';
+
 
   constructor(private notification: NzNotificationService,private http: HttpClient) {}
 
@@ -55,7 +59,19 @@ export class AppComponent {
      },httpOptions)
     .subscribe(
       data => {
-        console.log("POST Req is successful",data);
+       
+        // var str  = `{"name":"jon","age":30,"city":"dd DD"}`
+        // var txt = JSON.parse(str)
+        var json = JSON.stringify(data)
+        var txt = JSON.parse(json)
+        this.activecluster =txt.clustercount
+        this.activenodes = txt.nodescount
+        console.log(txt.clustercount)
+        console.log(txt.nodescount)
+
+        // console.log("POST Req is successful",data);
+
+    
       },
       error => {
         console.log("Error",error)
