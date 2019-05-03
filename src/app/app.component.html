@@ -1,73 +1,104 @@
 <!-- NG-ZORRO -->
 
-<br>
-<br>
-  <div nz-row style ="padding: 30px ;margin: 20px">
-      <nz-card   >
-    <div nz-col nzSpan = "12" >
-          <p>Create a new Cluster (Maxnum of Cluster is 5)</p>
-          <button nz-button [nzSize]="large" (click)="showModal()" nzType="primary">Create</button>  
-          <button nz-button [nzSize]="large" (click)="delete()" nzType="primary">Delete</button>  
-            <nz-modal [(nzVisible)]="isVisible" nzTitle="Cluster Information" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
-              <p>Name your Cluster</p> 
-                <input nz-input [(ngModel)]="Namevalue" />
-                <p></p> 
-                <p></p> 
-              <p>Counts of your Cluster Node</p> 
-                <nz-input-number [(ngModel)]="Numvalue" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>  
-            </nz-modal>
-    </div>
-
-    <div nz-col [nzSpan]="6">
-      <nz-statistic [nzValue]="activecluster | number" [nzTitle]="'Active Cluster'"></nz-statistic>
-    </div>
-    <div nz-col [nzSpan]="6">
-      <nz-statistic [nzValue]="activenodes | number" [nzTitle]="'Active Nodes'"></nz-statistic>
-    </div>
-  </nz-card>
-  </div>
-
-  <div nz-row style ="padding: 30px ;margin: 20px">
-  <nz-divider nzText = "Cluster Collection"></nz-divider>
-</div>
+<nz-layout class="layout">
+  <nz-header>
+    <div class="logo"></div>
+    <ul nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'" style="line-height: 64px;">
+      <!-- <li nz-menu-item>nav 1</li>
+      <li nz-menu-item>nav 2</li>
+      <li nz-menu-item>nav 3</li> -->
+    </ul>
+  </nz-header>
 
 
+  <nz-content style="padding:0 50px;">
+    <nz-breadcrumb style="margin:16px 0;">
+      <!-- <nz-breadcrumb-item>Home</nz-breadcrumb-item>
+      <nz-breadcrumb-item>List</nz-breadcrumb-item>
+      <nz-breadcrumb-item>App</nz-breadcrumb-item> -->
+    </nz-breadcrumb>
+   
+    <!-- create cluster part -->
+    <div  nz-col nzSpan = "12">
+      <nz-card [nzHoverable]="true"  style="background:#fff; margin: 15px; padding: 20px; min-height: 280px;">
 
+        <h2><i nz-icon [nzType]="'gold'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'" style="margin-right: 6px; font-size: 50px;"></i>  Cluster is the testing platform  </h2> 
+        <nz-divider ></nz-divider>
+        <br>
+        <button nz-button [nzSize]="large" (click)="showModal()" nzType="primary" ><i nz-icon type="plus"></i>Create a New Cluster</button>  
 
-<!-- <br>
-<br>
-<br>
-<div style ="padding: 30px ;margin: 20px">
-  <div nz-row >
-    <div nz-col nzSpan = "12" style ="padding: 20px ">
-        <nz-card   >
-          <p>Create a new Cluster (Maxnum of Cluster is 5)</p>
-            <button nz-button [nzSize]="large" (click)="showModal()" nzType="primary">Create</button>
-            <nz-modal [(nzVisible)]="isVisible" nzTitle="Cluster Information" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
-              <p>Name your Cluster</p> 
-                <input nz-input [(ngModel)]="Namevalue" />
-              <br />
-              <p>Counts of your Cluster Node</p> 
-                <nz-input-number [(ngModel)]="Numvalue" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>  
-            </nz-modal>
+          <nz-modal [(nzVisible)]="isVisible" nzTitle="Cluster Information" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+            <p>Name your Cluster</p> 
+              <input nz-input [(ngModel)]="Namevalue" />
+              <p></p> 
+              <p></p> 
+            <p>Counts of your Cluster Node</p> 
+              <nz-input-number [(ngModel)]="Numvalue" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>  
+          </nz-modal>
 
-        </nz-card>
-    </div>
-    <div nz-col nzSpan="12" style ="padding: 20px ">
-      <nz-card  >
-        <nz-row [nzGutter]="16">
-          <nz-col [nzSpan]="12">
-            <nz-statistic [nzValue]="0 | number" [nzTitle]="'Active Cluster'"></nz-statistic>
-
-          </nz-col>
-          <nz-col [nzSpan]="12">
-            <nz-statistic [nzValue]="0 | number" [nzTitle]="'Active Nodes'"></nz-statistic>
-          </nz-col>
-        </nz-row>
       </nz-card>
-
     </div>
-  </div>
-  
-</div> -->
-<!-- <nz-divider style ="margin: 50px"></nz-divider> -->
+   
+    <!-- cluster statistic part -->
+    <div nz-col nzSpan = "12" >
+      <nz-card [nzHoverable]="true"  style="background:#fff; margin: 15px; padding: 20px; min-height: 280px;">
+
+        <h2><i nz-icon [nzType]="'dashboard'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'" style="margin-right: 6px; font-size: 50px;"></i>  Overview of the clusters </h2> 
+        <nz-divider ></nz-divider>
+        <br>
+
+        <div nz-col [nzSpan]="12">
+          <nz-statistic [nzValue]="activecluster | number" [nzTitle]="'Active Cluster'"></nz-statistic>
+        </div>
+        <div nz-col [nzSpan]="12">
+          <nz-statistic [nzValue]="activenodes | number" [nzTitle]="'Active Nodes'"></nz-statistic>
+        </div>
+
+      </nz-card>
+    </div>
+
+    <!-- cluster collection part -->
+    <div nz-col nzSpan = "24" >
+        <nz-card [nzHoverable]="true"  style="background:#fff; margin: 15px; padding: 20px; min-height: 540px;">
+
+          <h2><i nz-icon [nzType]="'project'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'" style="margin-right: 6px; font-size: 50px;"></i>  Cluster collection  </h2> 
+          <nz-divider ></nz-divider>
+
+          <div  nz-col nzSpan = "6" *ngFor = "let cluster of clusters" >
+            <nz-card style="width:300px; margin:10px" [nzBordered]="true" nzTitle="{{cluster.clustername}}"  [nzHoverable]="true" [nzActions]="[actionSetting, actionEdit]">
+              <p>Master Port:   {{cluster.masterport}}</p>
+              <p>Cluster Size:  {{cluster.nodescount}} Nodes</p>
+              <p>Create Time :  {{cluster.createtime}}</p>
+            </nz-card>
+            <ng-template #actionSetting>
+              <button nz-button [nzSize]="small" (click)="onDelete(cluster)" nzType="primary" >Delete</button>
+            </ng-template>
+            <ng-template #actionEdit>
+              <button nz-button [nzSize]="small" (click)="showModal()" nzType="primary" >Add Nodes</button>
+            </ng-template>
+          </div>
+      
+        </nz-card>
+      </div>
+
+  </nz-content>
+
+  <nz-footer style="text-align: center;">WebCube ©2019 Implement By Angular</nz-footer>
+
+</nz-layout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
