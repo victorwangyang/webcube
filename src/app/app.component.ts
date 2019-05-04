@@ -40,11 +40,13 @@ export class AppComponent {
   //default value for statisctic
   activecluster = 0;
   activenodes = 0;
+
+  
  
 
 
   constructor(private notification: NzNotificationService,private http: HttpClient) {}
-
+ cardloading:boolean[] = [false,false,false];
   ngOnInit() {
 
     // refresh the statistic
@@ -60,9 +62,13 @@ export class AppComponent {
     this.isVisible = true;
   }
 
-  onDelete( cluster: { clustername: string; }): void {
+  onDelete( cluster: { clustername: string; },i): void {
+    
+    this.cardloading[i] = true
 
     console.log("name :",cluster.clustername)
+    console.log("xulie :",i)
+
     this.http.delete("/api/v1/cluster/"+cluster.clustername)
     .subscribe( 
       data => { 
@@ -75,9 +81,11 @@ export class AppComponent {
         .subscribe( clusters => this.clusters = clusters)
 
       console.log("DELETE Request is successful ", data); 
+      this.cardloading[i] = false
       }, 
       error => { 
       console.log("Error", error); 
+      this.cardloading[i] = false
       } 
       ); 
     
